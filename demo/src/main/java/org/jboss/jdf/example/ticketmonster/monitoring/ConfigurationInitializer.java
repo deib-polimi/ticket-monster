@@ -34,8 +34,8 @@ public class ConfigurationInitializer implements ServletContextListener {
 		applicationProperties.put(Property.CLOUD_PROVIDER_TYPE, "IaaS");
 		String mpIP = loadVariable("MODACLOUDS_TOWER4CLOUDS_MANAGER_ENDPOINT_IP", "localhost");
 		String mpPort = loadVariable("MODACLOUDS_TOWER4CLOUDS_MANAGER_ENDPOINT_PORT", "8170");
-		logger.debug("MODACLOUDS_TOWER4CLOUDS_MANAGER_ENDPOINT_IP = {}", mpIP);
-		logger.debug("MODACLOUDS_TOWER4CLOUDS_MANAGER_ENDPOINT_PORT = {}", mpPort);
+		logger.info("MODACLOUDS_TOWER4CLOUDS_MANAGER_ENDPOINT_IP = {}", mpIP);
+		logger.info("MODACLOUDS_TOWER4CLOUDS_MANAGER_ENDPOINT_PORT = {}", mpPort);
 		Registry.initialize(mpIP, Integer.parseInt(mpPort), applicationProperties, BaseEntityService.class.getPackage().getName());
 		Registry.startMonitoring();
 	}

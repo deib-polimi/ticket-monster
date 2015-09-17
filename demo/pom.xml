@@ -81,9 +81,9 @@
             <artifactId>java-app-dc</artifactId>
             <version>0.3.1</version>
 <exclusions>
-      <exclusion>
-         <groupId>antlr</groupId>
-         <artifactId>antlr</artifactId>
+<exclusion>
+         <groupId>it.polimi.tower4clouds</groupId>
+         <artifactId>rules</artifactId>
       </exclusion>
 </exclusions>
         </dependency>
