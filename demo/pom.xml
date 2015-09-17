@@ -63,12 +63,6 @@
         <version>8.2.2.Final</version>
         <type>pom</type>
         <scope>import</scope>
-        <exclusions>
-      <exclusion>
-         <groupId>antlr</groupId>
-         <artifactId>antlr</artifactId>
-      </exclusion>
-   </exclusions>
       </dependency>
       <dependency>
         <groupId>org.wildfly.bom</groupId>
@@ -81,6 +75,18 @@
   </dependencyManagement>
 
   <dependencies>
+
+<dependency>
+            <groupId>it.polimi.tower4clouds</groupId>
+            <artifactId>java-app-dc</artifactId>
+            <version>0.3.1</version>
+<exclusions>
+      <exclusion>
+         <groupId>antlr</groupId>
+         <artifactId>antlr</artifactId>
+      </exclusion>
+   </exclusions>
+        </dependency>
 
 <!-- First declare the APIs we depend on and need for compilation. All
             of them are provided by JBoss AS 7 -->
@@ -116,12 +122,6 @@
       <groupId>org.hibernate.javax.persistence</groupId>
       <artifactId>hibernate-jpa-2.1-api</artifactId>
       <scope>provided</scope>
-      <exclusions>
-      <exclusion>
-         <groupId>antlr</groupId>
-         <artifactId>antlr</artifactId>
-      </exclusion>
-   </exclusions>
     </dependency>
 
 <!-- Import the EJB API, we use provided scope as the API is included in
@@ -144,10 +144,6 @@
           <groupId>org.slf4j</groupId>
           <artifactId>slf4j-api</artifactId>
         </exclusion>
-      <exclusion>
-         <groupId>antlr</groupId>
-         <artifactId>antlr</artifactId>
-      </exclusion>
       </exclusions>
     </dependency>
 
@@ -159,12 +155,6 @@
       <groupId>org.hibernate</groupId>
       <artifactId>hibernate-jpamodelgen</artifactId>
       <scope>provided</scope>
-      <exclusions>
-      <exclusion>
-         <groupId>antlr</groupId>
-         <artifactId>antlr</artifactId>
-      </exclusion>
-   </exclusions>
     </dependency>
 
 <!-- Needed for running tests (you may also use TestNG) -->
@@ -222,12 +212,6 @@
       <scope>provided</scope>
     </dependency>
     
-    <dependency>
-	    <groupId>it.polimi.tower4clouds</groupId>
-	    <artifactId>java-app-dc</artifactId>
-	    <version>0.3.1</version>
-	</dependency>
-
   </dependencies>
 
   <build>
@@ -331,6 +315,24 @@
                 </aspectLibraries>
             </configuration>
         </plugin>
+<plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-enforcer-plugin</artifactId>
+        <version>1.4.1</version>
+        <executions>
+          <execution>
+            <id>enforce</id>
+            <configuration>
+              <rules>
+                <dependencyConvergence/>
+              </rules>
+            </configuration>
+            <goals>
+              <goal>enforce</goal>
+            </goals>
+          </execution>
+        </executions>
+      </plugin>
     </plugins>
     <pluginManagement>
 
