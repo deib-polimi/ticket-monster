@@ -8,6 +8,8 @@
             <module name="org.jboss.as.naming" />
             <module name="org.jboss.as.server" />
             <module name="org.jboss.msc" />
+            <module name="org.slf4j" />
+            <module name="java.util.logging" />
         </dependencies>
     </deployment>
 </jboss-deployment-structure>
