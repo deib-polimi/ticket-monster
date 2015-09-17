@@ -257,6 +257,8 @@
                     <security.user-name>${mysql.db.user}</security.user-name>
                     <security.password>${mysql.db.password}</security.password>
                     <pool-name>ticketmonster_pool</pool-name>
+                    <use-ccm>true</use-ccm>
+                    <use-java-context>true</use-java-context>
                   </properties>
                 </resource>
               </resources>
