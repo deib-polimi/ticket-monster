@@ -322,6 +322,7 @@
                 </aspectLibraries>
             </configuration>
         </plugin>
+        </plugins>
     <pluginManagement>
 
       <plugins>
