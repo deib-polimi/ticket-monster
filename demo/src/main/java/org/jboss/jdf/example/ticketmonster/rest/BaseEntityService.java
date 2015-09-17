@@ -6,6 +6,7 @@ import it.polimi.tower4clouds.java_app_dc.Registry;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.logging.Logger;
 
 import javax.inject.Inject;
 import javax.persistence.EntityManager;
@@ -73,6 +74,9 @@ public abstract class BaseEntityService<T> {
 
     @Inject
     private EntityManager entityManager;
+    
+    @Inject
+    private Logger logger;
 
     private Class<T> entityClass;
 
@@ -98,6 +102,7 @@ public abstract class BaseEntityService<T> {
     @GET
     @Produces(MediaType.APPLICATION_JSON)
     public List<T> getAll(@Context UriInfo uriInfo) {
+    	logger.info("WHAT THE HECK!");
     	String methodType = "GetAll"+entityClass.getSimpleName();
 		Registry.notifyStart(methodType);
         List<T> all = getAll(uriInfo.getQueryParameters());
