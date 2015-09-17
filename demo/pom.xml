@@ -227,6 +227,7 @@
         <executions>
           <execution>
             <id>deploy_jdbc_driver</id>
+            <phase>install</phase>
             <goals>
               <goal>deploy-artifact</goal>
             </goals>
@@ -240,6 +241,7 @@
           </execution>
           <execution>
             <id>add_datasource</id>
+            <phase>install</phase>
             <goals>
               <goal>add-resource</goal>
             </goals>
@@ -266,9 +268,20 @@
           </execution>
           <execution>
             <id>deploy_application</id>
+            <phase>install</phase>
             <goals>
               <goal>deploy</goal>
             </goals>
+          </execution>
+          <execution>
+            <id>undeploy_application</id>
+            <phase>clean</phase>
+            <goals>
+              <goal>undeploy</goal>
+            </goals>
+            <configuration>
+              <ignoreMissingDeployment>true</ignoreMissingDeployment>
+            </configuration>
           </execution>
         </executions>
       </plugin>
