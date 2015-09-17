@@ -1,7 +1,6 @@
 <jboss-deployment-structure>
     <deployment>
         <exclusions>
-			<module name="org.antlr"/>
         </exclusions>
         <!-- This allows you to define additional dependencies, it is the same
   as using the Dependencies: manifest attribute -->
