@@ -28,6 +28,7 @@ can find it in the source at src/main/webapp/WEB-INF/ticket-monster-ds.xml -->
             <property name="hibernate.connection.url" value="jdbc:mysql://localhost:3306/ticketmonster"/>
            <property name="hibernate.connection.username" value="sa"/>
            <property name="hibernate.connection.password" value="sa"/>
+           <property name="wildfly.jpa.twophasebootstrap" value="false" />
         </properties>
     </persistence-unit>
 </persistence>
