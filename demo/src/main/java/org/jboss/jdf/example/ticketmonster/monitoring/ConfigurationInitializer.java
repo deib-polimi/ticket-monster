@@ -10,9 +10,11 @@ import java.util.logging.Logger;
 import javax.inject.Inject;
 import javax.servlet.ServletContextEvent;
 import javax.servlet.ServletContextListener;
+import javax.servlet.annotation.WebListener;
 
 import org.jboss.jdf.example.ticketmonster.rest.BaseEntityService;
 
+@WebListener
 public class ConfigurationInitializer implements ServletContextListener {
 	
 	@Inject
