@@ -85,7 +85,7 @@
          <groupId>antlr</groupId>
          <artifactId>antlr</artifactId>
       </exclusion>
-   </exclusions>
+</exclusions>
         </dependency>
 
 <!-- First declare the APIs we depend on and need for compilation. All
@@ -184,6 +184,13 @@
       <artifactId>shrinkwrap-resolver-depchain</artifactId>
       <type>pom</type>
       <scope>test</scope>
+
+      <exclusions>
+      	<exclusion>
+      		<artifactId>httpcore</artifactId>
+      		<groupId>org.apache.httpcomponents</groupId>
+      	</exclusion>
+      </exclusions>
     </dependency>
 
 <!-- RESTEasy dependencies that bring in Jackson Core and RESTEasy APIs+SPIs, which we use for
@@ -315,25 +322,6 @@
                 </aspectLibraries>
             </configuration>
         </plugin>
-<plugin>
-        <groupId>org.apache.maven.plugins</groupId>
-        <artifactId>maven-enforcer-plugin</artifactId>
-        <version>1.4.1</version>
-        <executions>
-          <execution>
-            <id>enforce</id>
-            <configuration>
-              <rules>
-                <dependencyConvergence/>
-              </rules>
-            </configuration>
-            <goals>
-              <goal>enforce</goal>
-            </goals>
-          </execution>
-        </executions>
-      </plugin>
-    </plugins>
     <pluginManagement>
 
       <plugins>
