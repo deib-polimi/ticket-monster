@@ -85,6 +85,10 @@
          <groupId>it.polimi.tower4clouds</groupId>
          <artifactId>rules</artifactId>
       </exclusion>
+	<exclusion>
+		<artifactId>jsr311-api</artifactId>
+		<groupId>javax.ws.rs</groupId>
+	</exclusion>
 </exclusions>
         </dependency>
 
