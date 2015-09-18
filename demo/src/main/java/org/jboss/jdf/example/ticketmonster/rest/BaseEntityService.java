@@ -74,9 +74,6 @@ public abstract class BaseEntityService<T> {
 
     @Inject
     private EntityManager entityManager;
-    
-    @Inject
-    private Logger logger;
 
     private Class<T> entityClass;
 
@@ -102,7 +99,6 @@ public abstract class BaseEntityService<T> {
     @GET
     @Produces(MediaType.APPLICATION_JSON)
     public List<T> getAll(@Context UriInfo uriInfo) {
-    	logger.info("WHAT THE HECK!");
     	String methodType = "GetAll"+entityClass.getSimpleName();
 		Registry.notifyStart(methodType);
         List<T> all = getAll(uriInfo.getQueryParameters());

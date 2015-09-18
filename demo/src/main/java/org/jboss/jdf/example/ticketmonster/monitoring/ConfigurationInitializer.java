@@ -5,20 +5,19 @@ import it.polimi.tower4clouds.java_app_dc.Registry;
 
 import java.util.HashMap;
 import java.util.Map;
-import java.util.logging.Logger;
 
-import javax.inject.Inject;
 import javax.servlet.ServletContextEvent;
 import javax.servlet.ServletContextListener;
 import javax.servlet.annotation.WebListener;
 
 import org.jboss.jdf.example.ticketmonster.rest.BaseEntityService;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 @WebListener
 public class ConfigurationInitializer implements ServletContextListener {
 	
-	@Inject
-    private Logger logger;
+	private static final Logger logger = LoggerFactory.getLogger(ConfigurationInitializer.class);
 
 	@Override
 	public void contextDestroyed(ServletContextEvent sce) {
@@ -37,8 +36,8 @@ public class ConfigurationInitializer implements ServletContextListener {
 		applicationProperties.put(Property.CLOUD_PROVIDER_TYPE, "IaaS");
 		String mpIP = loadVariable("MODACLOUDS_TOWER4CLOUDS_MANAGER_ENDPOINT_IP", "localhost");
 		String mpPort = loadVariable("MODACLOUDS_TOWER4CLOUDS_MANAGER_ENDPOINT_PORT", "8170");
-		logger.info("MODACLOUDS_TOWER4CLOUDS_MANAGER_ENDPOINT_IP = " + mpIP);
-		logger.info("MODACLOUDS_TOWER4CLOUDS_MANAGER_ENDPOINT_PORT = " + mpPort);
+		logger.info("MODACLOUDS_TOWER4CLOUDS_MANAGER_ENDPOINT_IP = {}", mpIP);
+		logger.info("MODACLOUDS_TOWER4CLOUDS_MANAGER_ENDPOINT_PORT = {}", mpPort);
 		Registry.initialize(mpIP, Integer.parseInt(mpPort), applicationProperties, BaseEntityService.class.getPackage().getName());
 		Registry.startMonitoring();
 	}
