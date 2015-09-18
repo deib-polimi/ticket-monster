@@ -1,12 +1,8 @@
 package org.jboss.jdf.example.ticketmonster.rest;
 
-import it.polimi.tower4clouds.java_app_dc.Monitor;
-import it.polimi.tower4clouds.java_app_dc.Registry;
-
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-import java.util.logging.Logger;
 
 import javax.inject.Inject;
 import javax.persistence.EntityManager;
@@ -99,10 +95,7 @@ public abstract class BaseEntityService<T> {
     @GET
     @Produces(MediaType.APPLICATION_JSON)
     public List<T> getAll(@Context UriInfo uriInfo) {
-    	String methodType = "GetAll"+entityClass.getSimpleName();
-		Registry.notifyStart(methodType);
         List<T> all = getAll(uriInfo.getQueryParameters());
-        Registry.notifyEnd(methodType);
 		return all;
     }
     
@@ -138,8 +131,6 @@ public abstract class BaseEntityService<T> {
     @Path("/count")
     @Produces(MediaType.APPLICATION_JSON)
     public Map<String, Long> getCount(@Context UriInfo uriInfo) {
-    	String methodType = "GetCount"+entityClass.getSimpleName();
-		Registry.notifyStart(methodType);
         CriteriaBuilder criteriaBuilder = entityManager.getCriteriaBuilder();
         CriteriaQuery<Long> criteriaQuery = criteriaBuilder.createQuery(Long.class);
         Root<T> root = criteriaQuery.from(entityClass);
@@ -148,7 +139,6 @@ public abstract class BaseEntityService<T> {
         criteriaQuery.where(predicates);
         Map<String, Long> result = new HashMap<String, Long>();
         result.put("count", entityManager.createQuery(criteriaQuery).getSingleResult());
-        Registry.notifyEnd(methodType);
         return result;
     }
 
@@ -177,15 +167,12 @@ public abstract class BaseEntityService<T> {
     @Path("/{id:[0-9][0-9]*}")
     @Produces(MediaType.APPLICATION_JSON)
     public T getSingleInstance(@PathParam("id") Long id) {
-    	String methodType = "GetInstance"+entityClass.getSimpleName();
-		Registry.notifyStart(methodType);
         final CriteriaBuilder criteriaBuilder = entityManager.getCriteriaBuilder();
         final CriteriaQuery<T> criteriaQuery = criteriaBuilder.createQuery(entityClass);
         Root<T> root = criteriaQuery.from(entityClass);
         Predicate condition = criteriaBuilder.equal(root.get("id"), id);
         criteriaQuery.select(criteriaBuilder.createQuery(entityClass).getSelection()).where(condition);
         T singleResult = entityManager.createQuery(criteriaQuery).getSingleResult();
-        Registry.notifyEnd(methodType);
 		return singleResult;
     }
 }

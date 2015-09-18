@@ -16,8 +16,6 @@ import org.slf4j.LoggerFactory;
 
 @WebListener
 public class ConfigurationInitializer implements ServletContextListener {
-	
-	private static final Logger logger = LoggerFactory.getLogger(ConfigurationInitializer.class);
 
 	@Override
 	public void contextDestroyed(ServletContextEvent sce) {
@@ -36,9 +34,8 @@ public class ConfigurationInitializer implements ServletContextListener {
 		applicationProperties.put(Property.CLOUD_PROVIDER_TYPE, "IaaS");
 		String mpIP = loadVariable("MODACLOUDS_TOWER4CLOUDS_MANAGER_ENDPOINT_IP", "localhost");
 		String mpPort = loadVariable("MODACLOUDS_TOWER4CLOUDS_MANAGER_ENDPOINT_PORT", "8170");
-		logger.info("MODACLOUDS_TOWER4CLOUDS_MANAGER_ENDPOINT_IP = {}", mpIP);
-		logger.info("MODACLOUDS_TOWER4CLOUDS_MANAGER_ENDPOINT_PORT = {}", mpPort);
-		Registry.initialize(mpIP, Integer.parseInt(mpPort), applicationProperties, BaseEntityService.class.getPackage().getName());
+		Registry.initialize(mpIP, Integer.parseInt(mpPort), applicationProperties, 
+				BaseEntityService.class.getPackage().getName(), false, true);
 		Registry.startMonitoring();
 	}
 	
