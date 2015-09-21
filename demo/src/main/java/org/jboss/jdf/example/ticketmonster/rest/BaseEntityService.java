@@ -99,7 +99,6 @@ public abstract class BaseEntityService<T> {
     @GET
     @Produces(MediaType.APPLICATION_JSON)
     public List<T> getAll(@Context UriInfo uriInfo) {
-    	logger.info("THE LOGGER!!! -----------------------------------------------------------------");
         List<T> all = getAll(uriInfo.getQueryParameters());
 		return all;
     }
