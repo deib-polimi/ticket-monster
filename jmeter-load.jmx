@@ -21,7 +21,7 @@
         <collectionProp name="Arguments.arguments">
           <elementProp name="ServerIP" elementType="Argument">
             <stringProp name="Argument.name">ServerIP</stringProp>
-            <stringProp name="Argument.value">${__P(ServerIP)}</stringProp>
+            <stringProp name="Argument.value">${__P(ServerIP,)}</stringProp>
             <stringProp name="Argument.metadata">=</stringProp>
           </elementProp>
         </collectionProp>
