@@ -25,19 +25,19 @@ public class ConfigurationInitializer implements ServletContextListener {
 	@Override
 	public void contextInitialized(ServletContextEvent sce) {
 		Map<Property, String> applicationProperties = new HashMap<Property, String>();
-		applicationProperties.put(Property.ID, loadVariable("INTERNAL_COMPONENT_ID", "_ic1"));
-		applicationProperties.put(Property.TYPE, "WebApp");
-		applicationProperties.put(Property.VM_ID, loadVariable("VM_ID", "_vm1"));
-		applicationProperties.put(Property.VM_TYPE, "WebVM");
-		applicationProperties.put(Property.CLOUD_PROVIDER_ID, loadVariable("CLOUD_PROVIDER_ID", "_cp1"));
+		applicationProperties.put(Property.ID, loadVariable("MODACLOUDS_TOWER4CLOUDS_INTERNAL_COMPONENT_ID", "_ic1"));
+		applicationProperties.put(Property.TYPE, loadVariable("MODACLOUDS_TOWER4CLOUDS_INTERNAL_COMPONENT_TYPE","WebApp"));
+		applicationProperties.put(Property.VM_ID, loadVariable("MODACLOUDS_TOWER4CLOUDS_VM_ID", "_vm1"));
+		applicationProperties.put(Property.VM_TYPE, loadVariable("MODACLOUDS_TOWER4CLOUDS_VM_TYPE","WebVM"));
+		applicationProperties.put(Property.CLOUD_PROVIDER_ID, loadVariable("MODACLOUDS_TOWER4CLOUDS_CLOUD_PROVIDER_ID", "_cp1"));
 		applicationProperties.put(Property.CLOUD_PROVIDER_TYPE, "IaaS");
 		String mpIP = loadVariable("MODACLOUDS_TOWER4CLOUDS_MANAGER_IP", "localhost");
 		String mpPort = loadVariable("MODACLOUDS_TOWER4CLOUDS_MANAGER_PORT", "8170");
-		Registry.initialize(mpIP, Integer.parseInt(mpPort), applicationProperties, 
+		Registry.initialize(mpIP, Integer.parseInt(mpPort), applicationProperties,
 				BaseEntityService.class.getPackage().getName(), false, true);
 		Registry.startMonitoring();
 	}
-	
+
 	public static String loadVariable(String variableName, String defaultValue) {
 		if (System.getenv().containsKey(variableName)) {
 			return System.getenv(variableName);
